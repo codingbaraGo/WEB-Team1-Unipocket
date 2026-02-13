@@ -9,6 +9,7 @@ import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +25,9 @@ public class WidgetQueryController {
 	@Operation(summary = "가계부 위젯 조회", description = "가계부에 대한 위젯 데이터를 조회합니다.")
 	@GetMapping("/widget")
 	public ResponseEntity<Object> getWidget(
-			@LoginUser UUID userId, @PathVariable Long accountBookId, WidgetQueryRequest request) {
+			@LoginUser UUID userId,
+			@PathVariable Long accountBookId,
+			@ModelAttribute WidgetQueryRequest request) {
 
 		Object result =
 				widgetQueryService.getWidget(
@@ -44,7 +47,7 @@ public class WidgetQueryController {
 			@LoginUser UUID userId,
 			@PathVariable Long accountBookId,
 			@PathVariable Long travelId,
-			WidgetQueryRequest request) {
+			@ModelAttribute WidgetQueryRequest request) {
 
 		Object result =
 				widgetQueryService.getWidget(
